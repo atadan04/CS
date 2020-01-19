@@ -14,10 +14,8 @@ namespace TimeConverter
             second.Sec = 120;
             Timer timer = (Timer)second;
             Console.WriteLine($"{timer.Hou} : {timer.Min} : {timer.Sec}");
-
             Second second1 = (Second)timer;
             Console.WriteLine(second1.Sec);
-
             Console.ReadLine();
 
 
