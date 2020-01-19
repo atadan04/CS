@@ -1,0 +1,6 @@
+D:\projectGitHub\CS\TimeConverter\TimeConverter\TimeConverter\bin\Debug\TimeConverter.exe.config
+D:\projectGitHub\CS\TimeConverter\TimeConverter\TimeConverter\bin\Debug\TimeConverter.exe
+D:\projectGitHub\CS\TimeConverter\TimeConverter\TimeConverter\bin\Debug\TimeConverter.pdb
+D:\projectGitHub\CS\TimeConverter\TimeConverter\TimeConverter\obj\Debug\TimeConverter.csprojAssemblyReference.cache
+D:\projectGitHub\CS\TimeConverter\TimeConverter\TimeConverter\obj\Debug\TimeConverter.exe
+D:\projectGitHub\CS\TimeConverter\TimeConverter\TimeConverter\obj\Debug\TimeConverter.pdb
