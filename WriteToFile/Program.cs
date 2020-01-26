@@ -28,7 +28,7 @@ namespace WriteToFile
                     sw.Close();
                     sw = null;
                 }
-                catch (Exception ioError)
+                catch (IOException ioError)
                 {
                     string dir = Directory.GetCurrentDirectory();
                     string path = Path.Combine(dir, fileName);
