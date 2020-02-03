@@ -11,25 +11,25 @@ namespace AutorizationApp
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите 1 для регстрации: ");
-            Console.WriteLine("Введите 2 для входа: ");
+            Console.Write("Enter 1 to sign up: ");
+            Console.WriteLine("Enter 2 to sign in: ");
             var input =  Console.ReadLine();
-            if (input == "1")             //регистрация
+            if (input == "1")             //register
             {
-                Console.Write("Введите логин: ");
+                Console.Write("Enter login: ");
                 var loginInput = Console.ReadLine();
-                Console.Write("Введите пароль: ");
+                Console.Write("Enter password: ");
                 var passwordInput = Console.ReadLine();
-                Console.Write("Введите пароль еще раз: ");
+                Console.Write("Enter the password again: ");
                 var checkPasswordInput = Console.ReadLine();
 
                 if (passwordInput.Equals(checkPasswordInput) == false)
                 {
                     while (true)
                     {
-                        Console.WriteLine("Введите пароль заново");
+                        Console.WriteLine("Enter the password again: ");
                         passwordInput = Console.ReadLine();
-                        Console.Write("Введите пароль еще раз: ");
+                        Console.Write("Enter the password again: ");
                         checkPasswordInput = Console.ReadLine();
                         if (passwordInput.Equals(checkPasswordInput))
                         {
@@ -43,40 +43,45 @@ namespace AutorizationApp
                 {
                     checkPasswordInput = null;
                 }
-                Console.Write("Введите адресс электронной почты: ");
+                Console.Write("Enter the Email: ");
                 var emailInput = Console.ReadLine();
 
-                using (var context = new AutorizationContext())          //открытие БД
+                using (var context = new AutorizationContext())          
                 {
                     var user = new User(loginInput, passwordInput, emailInput);
                     context.Users.Add(user);
                     context.SaveChanges();
-                    Console.WriteLine("Готово!");
+                    Console.WriteLine("Success!");
                     Console.Read();
                     
                 }
 
             }
-            else if (input == "2")
+            else if (input == "2")                  //sign in
             {
-                Console.Write("Введите логин: ");
-                var loginInput = Console.ReadLine();
-                Console.Write("Введите пароль: ");
-                var passwordInput = Console.ReadLine();
+                
 
                 using (var context = new AutorizationContext())
                 {
-                    
-                    
-                    var user = context.Users.FirstOrDefault(i => i.Login == loginInput && i.Password == passwordInput);
-                    if (user != null)
+                    while (true)
                     {
-                        Console.WriteLine("Успешно");
+                        Console.Write("Enter login: ");
+                        var loginInput = Console.ReadLine();
+                        Console.Write("Enter password: ");
+                        var passwordInput = Console.ReadLine();
+
+                        var user = context.Users.FirstOrDefault(i => i.Login == loginInput && i.Password == passwordInput);
+                        if (user != null)
+                        {
+                            Console.WriteLine("Success!");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid login or password ");
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Неверный логин или пароль");
-                    }
+                    
 
                 }
             }
