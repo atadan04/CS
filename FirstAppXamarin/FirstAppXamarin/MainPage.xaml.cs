@@ -20,7 +20,7 @@ namespace FirstAppXamarin
         Nums nums = new Nums();
 
         List<string> list = new List<string>();
-        
+      
 
         private void button_Clicked(object sender, EventArgs e)
         {
@@ -53,9 +53,9 @@ namespace FirstAppXamarin
                 {
                     if (!string.IsNullOrWhiteSpace(label.Text))
                     {
-                        var stringNum = label.Text;
+                        
 
-                        nums.Num1 = int.Parse(label.Text);
+                        nums.Num1 = double.Parse(label.Text);
                         label.Text = "";
                         Operation.flag = "+";
                     }
@@ -67,7 +67,7 @@ namespace FirstAppXamarin
                 {
                     if (!string.IsNullOrWhiteSpace(label.Text))
                     {
-                        nums.Num1 = int.Parse(label.Text); //операция вычитания
+                        nums.Num1 = double.Parse(label.Text); //операция вычитания
                         label.Text = "";
                         Operation.flag = "-";
                     }
@@ -78,7 +78,7 @@ namespace FirstAppXamarin
                 {
                     if (!string.IsNullOrWhiteSpace(label.Text))
                     {
-                         nums.Num1 = int.Parse(label.Text);
+                         nums.Num1 = double.Parse(label.Text);
                         label.Text = "";
                         Operation.flag = "*";
                     }
@@ -88,7 +88,7 @@ namespace FirstAppXamarin
                 {
                     if (!string.IsNullOrWhiteSpace(label.Text))
                     {
-                        nums.Num1 = int.Parse(label.Text);
+                        nums.Num1 = double.Parse(label.Text);
                         label.Text = "";
                         Operation.flag = "/";
                     }
@@ -112,42 +112,64 @@ namespace FirstAppXamarin
                 else if (button1==buttonClear)          //очистить
                 {
                     label.Text = "";
+                    list.Clear();
                 }
 
+
+                else if (button1==buttonDot)
+                {
+                    if (!string.IsNullOrWhiteSpace(label.Text))
+                    {
+                        label.Text += ",";
+                        list.Add(",");
+                    }
+                    else
+                    {
+                        label.Text += "0,";
+                        list.Add("0");
+                        list.Add(",");
+                    }
+                    
+                }
+                else if (button1==buttonNegative)
+                {
+                    if (!string.IsNullOrWhiteSpace(label.Text))
+                    {
+                        double result = double.Parse(label.Text);
+                        result *= -1;
+                        label.Text = result.ToString();
+                    }
+                }
                 else if(button1==buttonEqually) //выбор метода 
                 {   if (!string.IsNullOrWhiteSpace(label.Text))
                     {
-                        nums.Num2 = int.Parse(label.Text);
+                        nums.Num2 = double.Parse(label.Text);
                         label.Text = "";
+                        double result = 0;
                         if (Operation.flag == "*")
                         {
-                            var result = Operation.Multiply(nums.Num1, nums.Num2);
-                            label.Text += result.ToString();
-                            list.Clear();
-                            list.Add(label.Text);
+                            result = Operation.Multiply(nums.Num1, nums.Num2);
+                            
 
                         }
                         if (Operation.flag == "/")
                         {
-                            var result = Operation.Divide(nums.Num1, nums.Num2);
-                            label.Text += result.ToString();
-                            list.Clear();
-                            list.Add(label.Text);
+                            result = Operation.Divide(nums.Num1, nums.Num2);
+                            
                         }
                         if (Operation.flag == "+")
                         {
-                            var result = Operation.Add(nums.Num1, nums.Num2);
-                            label.Text += result.ToString();
-                            list.Clear();
-                            list.Add(label.Text);
+                            result = Operation.Add(nums.Num1, nums.Num2);
+                            
                         }
                         if (Operation.flag == "-")
                         {
-                            var result = Operation.Difference(nums.Num1, nums.Num2);
-                            label.Text += result.ToString();
-                            list.Clear();
-                            list.Add(label.Text);
+                            result = Operation.Difference(nums.Num1, nums.Num2);
+                            
                         }
+                        label.Text += result.ToString();
+                        list.Clear();
+                        list.Add(label.Text);
                     }
                    
                     

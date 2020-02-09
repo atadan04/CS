@@ -8,24 +8,24 @@ namespace FirstAppXamarin.Service
     {
         public static string flag = "";
         
-       static  public int Add(int firstNum, int secondNum)
+       static  public double Add(double firstNum, double secondNum)
         {
             flag = "+";
             return firstNum + secondNum;
         }
-        static public int Difference(int firstNum, int secondNum)
+        static public double Difference(double firstNum, double secondNum)
         {
             flag = "-";
             return firstNum - secondNum;
         }
-        static public int Multiply(int firstNum, int secondNum)
+        static public double Multiply(double firstNum, double secondNum)
         {
             flag = "*";
             return firstNum * secondNum;
         }
-        static public int Divide(int firstNum, int secondNum)
+        static public double Divide(double firstNum, double secondNum)
         {
-            int result ;
+            double result ;
             flag = "/";
             try
             {

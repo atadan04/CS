@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="FirstAppXamarin.MainPage">
    
-    <Grid x:Name="GridApp" >
+    <Grid x:Name="GridApp" BackgroundColor="DarkGray">
         <Grid.RowDefinitions >
             <RowDefinition/>
             <RowDefinition/>
@@ -21,8 +21,23 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Label x:Name="DisplayOut" BackgroundColor="Black" 
+               TextColor="White" HorizontalTextAlignment="End"
+               VerticalTextAlignment="Center" FontSize="50" 
+               Text ="" Grid.Row="0" Grid.ColumnSpan="4">
+            
+
+            <Label.FontFamily >
+                <OnPlatform x:TypeArguments="x:String">
+                    <OnPlatform.iOS></OnPlatform.iOS>
+                    <OnPlatform.Android>Lobster-Regular.ttf#Lobster</OnPlatform.Android>
+                    <OnPlatform.WinPhone></OnPlatform.WinPhone>
+                </OnPlatform>
+            </Label.FontFamily>
+        </Label>
         
-        <Label x:Name="DisplayOut" BackgroundColor="Black" TextColor="White"  Text ="" Grid.Row="0" Grid.ColumnSpan="4"/>
+
         <Entry x:Name="numbers"/>
 
 
@@ -30,19 +45,22 @@
         <Button x:Name="buttonSeven" Text="7"
                 Clicked="button_Clicked" 
                 Grid.Row="1"
-                
+                BackgroundColor="LightGray"
                 Grid.Column="0"/>
         <Button x:Name="buttonEight" Text="8"
                 Clicked="button_Clicked" 
                 Grid.Row="1"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonNine" Text="9"
                 Clicked="button_Clicked"
                 Grid.Row="1"
-                Grid.Column="2"/>
+                Grid.Column="2"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonDivide" Text="/"
                 Clicked="button_Clicked"
                 Grid.Row="1"
+                BackgroundColor="Silver"
                 Grid.Column="3"/>
         
         
@@ -51,71 +69,86 @@
         <Button x:Name="buttonFour" Text="4"
                 Clicked="button_Clicked" 
                 Grid.Row="2"
-                Grid.Column="0"/>
+                Grid.Column="0"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonFive" Text="5"
                 Clicked="button_Clicked" 
                 Grid.Row="2"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonSix" Text="6"
                 Clicked="button_Clicked"
                 Grid.Row="2"
-                Grid.Column="2"/>
+                Grid.Column="2"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonMultiply" Text="x"
                 Clicked="button_Clicked"
                 Grid.Row="2"
-                Grid.Column="3"/>
+                Grid.Column="3"
+                BackgroundColor="Silver"/>
 
 
 
         <Button x:Name="buttonOne" Text="1"
                 Clicked="button_Clicked" 
                 Grid.Row="3"
-                Grid.Column="0"/>
+                Grid.Column="0"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonTwo" Text="2"
                 Clicked="button_Clicked" 
                 Grid.Row="3"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                BackgroundColor="LightGray"/>
         <Button x:Name="buttonThree" Text="3"
                 Clicked="button_Clicked"
                 Grid.Row="3"
-                Grid.Column="2"/>
+                Grid.Column="2"
+                BackgroundColor="LightGray" />
         <Button x:Name="buttonDifference" Text="-"
                 Clicked="button_Clicked"
                 Grid.Row="3"
-                Grid.Column="3"/>
+                Grid.Column="3"
+                BackgroundColor="Silver"/>
 
 
 
         <Button x:Name="buttonNegative" Text="+/-"
                 Clicked="button_Clicked" 
                 Grid.Row="4"
-                Grid.Column="0"/>
+                Grid.Column="0"
+                BackgroundColor="Silver"/>
         <Button x:Name="buttonZero" Text="0"
                 Clicked="button_Clicked" 
                 Grid.Row="4"
-                Grid.Column="1"/>
+                Grid.Column="1"
+               BackgroundColor="LightGray"/>
         <Button x:Name="buttonDot" Text=","
                 Clicked="button_Clicked"
                 Grid.Row="4"
-                Grid.Column="2"/>
+                Grid.Column="2"
+                BackgroundColor="Silver"/>
         <Button x:Name="buttonAdd" Text="+"
                 Clicked="button_Clicked"
                 Grid.Row="4"
-                Grid.Column="3"/>
+                Grid.Column="3"
+                BackgroundColor="Silver"/>
 
 
         <Button x:Name="buttonEqually" Text="="
                 Clicked="button_Clicked" 
                 Grid.Row="5"
-                Grid.ColumnSpan="2"/>
+                Grid.ColumnSpan="2"
+                BackgroundColor="Silver"/>
         <Button x:Name="buttonBackspace" Text="&lt;-"
                 Clicked="button_Clicked" 
                 Grid.Row="5"
-                Grid.Column="3"/>
+                Grid.Column="3"
+                BackgroundColor="Silver"/>
         <Button x:Name="buttonClear" Text="C"
                 Clicked="button_Clicked" 
                 Grid.Row="5"
-                Grid.Column="2"/>
+                Grid.Column="2"
+                BackgroundColor="Silver"/>
     </Grid>
     
 
