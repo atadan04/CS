@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:BlueBall"
+       x:Class="BlueBall.AppShell">
+    <Shell.FlyoutHeader>
+        <StackLayout BackgroundColor="#00D8FD" Padding="10">
+            <Image HeightRequest="100"   Source="BlueBall.png" />
+            <Label Text="Менюшечка" />
+            <Label Text="Счастья вам!"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Главная страница" Icon="bear.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:MainPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Профиль" Icon="monkey.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Profile}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Корзина" Icon="paw.png">
+        <ShellContent ContentTemplate="{DataTemplate pages:Basket}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Товары" Icon="">
+        <ShellContent ContentTemplate="{DataTemplate pages:Products}"/>
+    </FlyoutItem>
+    <MenuItem Clicked="MenuItem_Clicked" Text="Меню" IconImageSource="item.png" />
+
+</Shell>
