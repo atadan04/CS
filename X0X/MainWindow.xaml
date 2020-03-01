@@ -33,6 +33,7 @@
         <Button x:Name="btn9" Margin="5" Grid.Row="2" Click="Button_Click" Grid.Column="2"></Button>
 
         <Button  Margin="90,70,5,5" Grid.Row="2" Click="Button_Click_1" Grid.Column="3" Content="Done"></Button>
+        <Button  Margin="23,70,46,5" Grid.Row="2" Click="Button_Click_2" Grid.Column="4" Content="Continue"></Button>
 
         <TextBlock Text="Score:" Grid.Row="0" Grid.Column="4"
                    VerticalAlignment="Top" HorizontalAlignment="Left"

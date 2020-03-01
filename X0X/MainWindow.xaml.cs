@@ -25,12 +25,14 @@ namespace X0X
         static internal Button[,] buttonsLocation;
 
         static internal bool IsMovePlayer = true;
+        static internal bool IsMoveEnemy = false;
+
         private Random rnd = new Random(DateTime.Now.Millisecond);
         public delegate void DelegateWhoWin(Button[,] buttons);
         public event DelegateWhoWin WhoIsWon;
         static int ScoreUserInt = 0;
         static int ScoreEnemyInt = 0;
-        static bool restartFlag = true;
+        static bool restartFlag = false;
         
 
         public MainWindow()
@@ -57,13 +59,21 @@ namespace X0X
                 if (button.Content == null)
                 {
                     button.Content = DrawX();
-
+                    IsMovePlayer = false;
+                    IsMoveEnemy = true;
                     WhoWin();
+                    if (!restartFlag)
+                    {
+                        IsMovePlayer = false;
+                        IsMoveEnemy = false;
+
+                    }
+
 
 
                 }
-                IsMovePlayer = false;
-                restartFlag = true;
+
+
 
 
             }
@@ -73,30 +83,7 @@ namespace X0X
             
 
         }
-        //public void WhoWin()
-        //{
-
-        //    if (btn1.Content is Path && btn4.Content is Path && btn7.Content is Path)
-        //    {
-        //        WhoWinText.Foreground = System.Windows.Media.Brushes.DarkGreen;
-        //        WhoWinText.Text = "YOU WIN";
-        //        ScoreUserInt = Convert.ToInt32(ScoreUser.Text);
-        //        ScoreUserInt++;
-        //        ScoreUser.Text = ScoreUserInt.ToString();
-
-        //        //if (btn1.Content == DrawX())
-        //        //{
-        //        //    WhoWinText.Foreground = System.Windows.Media.Brushes.DarkGreen;
-        //        //    WhoWinText.Text = "YOU WIN";
-        //        //}
-        //        //else 
-        //        //{
-        //        //    WhoWinText.Foreground = System.Windows.Media.Brushes.DarkRed;
-        //        //    WhoWinText.Text = "YOU LOSE";
-        //        //}
-
-        //    }
-        //}
+        
         public void WhoWin()
         {
             
@@ -112,9 +99,32 @@ namespace X0X
             {
                 WhoIsWon += PlayerWon;
                 WhoIsWon(buttonsLocation);
-                restartFlag = false;
+                ScoreUserInt = Convert.ToInt32(ScoreUser.Text);
+                ScoreUserInt++;
+                ScoreUser.Text = ScoreUserInt.ToString();
+                restartFlag = true;
+               
 
-                
+
+            }
+            else
+            {
+                if (btn1.Content != null && btn2.Content != null && btn3.Content != null &&
+                                btn4.Content != null && btn5.Content != null && btn6.Content != null &&
+                                btn7.Content != null && btn8.Content != null && btn9.Content != null)
+                {
+                    WhoIsWon += DeadHeat;
+                    WhoIsWon(buttonsLocation);
+                    restartFlag = true;
+                    ScoreUserInt = Convert.ToInt32(ScoreUser.Text);
+                    ScoreUserInt++;
+                    ScoreUser.Text = ScoreUserInt.ToString();
+
+                    ScoreEnemyInt = Convert.ToInt32(ScoreEnemy.Text);
+                    ScoreEnemyInt++;
+                    ScoreEnemy.Text = ScoreEnemyInt.ToString();
+
+                }
             }
             if (btn1.Content is Ellipse && btn4.Content is Ellipse && btn7.Content is Ellipse ||
                 btn2.Content is Ellipse && btn5.Content is Ellipse && btn8.Content is Ellipse ||
@@ -127,17 +137,16 @@ namespace X0X
             {
                 WhoIsWon += EnemyWon;
                 WhoIsWon(buttonsLocation);
-                restartFlag = false;
+                restartFlag = true;
+                ScoreEnemyInt = Convert.ToInt32(ScoreEnemy.Text);
+                ScoreEnemyInt++;
+                ScoreEnemy.Text = ScoreEnemyInt.ToString();
+                
 
             }
-           else if(btn1.Content!=null&& btn2.Content != null&& btn3.Content != null&&
-                btn4.Content != null&& btn5.Content != null&& btn6.Content != null&&
-                btn7.Content != null&& btn8.Content != null&& btn9.Content != null)
-            {
-                WhoIsWon += DeadHeat;
-                WhoIsWon(buttonsLocation);
-                restartFlag = false;
-            }
+           
+
+
 
 
 
@@ -148,6 +157,7 @@ namespace X0X
             DelegateWhoWin delegateWhoWin;
             delegateWhoWin = IsDeadHeat;
             delegateWhoWin(buttonsLocation);
+            
         }
 
         private void EnemyWon(Button[,] buttons) //обработчик события
@@ -155,6 +165,8 @@ namespace X0X
             DelegateWhoWin delegateWhoWin;
             delegateWhoWin = IsEnemyWon;
             delegateWhoWin(buttonsLocation);
+           
+
         }
 
         private void PlayerWon(Button[,] buttons) //обработчик события
@@ -162,101 +174,80 @@ namespace X0X
             DelegateWhoWin delegateWhoWin;
             delegateWhoWin = IsPlayerWon;
             delegateWhoWin(buttonsLocation);
+            
+
         }
 
         public void IsPlayerWon(Button[,] buttons)//метод соответствующий делегату DelegateWhoWin
         {
-            //if (btn1.Content is Path && btn4.Content is Path && btn7.Content is Path)
-            //{
+           
+            
                 WhoWinText.Foreground = System.Windows.Media.Brushes.DarkGreen;
                 WhoWinText.Text = "YOU WIN";
-                ScoreUserInt = Convert.ToInt32(ScoreUser.Text);
-                ScoreUserInt++;
-                ScoreUser.Text = ScoreUserInt.ToString();
-            //}
+                
+            
         }
         public void IsEnemyWon(Button[,] buttons) //метод соответствующий делегату DelegateWhoWin
         {
-            //if (btn1.Content is Ellipse && btn4.Content is Ellipse && btn7.Content is Ellipse)
-            //{
+            
             WhoWinText.Foreground = System.Windows.Media.Brushes.DarkRed;
             WhoWinText.Text = "YOU LOSE";
-            ScoreEnemyInt = Convert.ToInt32(ScoreEnemy.Text);
-            ScoreEnemyInt++;
-            ScoreEnemy.Text = ScoreEnemyInt.ToString();
+            
         
-        //}
+        
 
     }
         public void IsDeadHeat(Button[,] buttons) //метод соответствующий делегату DelegateWhoWin
         {
-            //if (btn1.Content is Ellipse && btn4.Content is Ellipse && btn7.Content is Ellipse)
-            //{
+            
             WhoWinText.Foreground = System.Windows.Media.Brushes.DarkOrange;
             WhoWinText.Text = "DEAD HEAT";
 
-            ScoreUserInt = Convert.ToInt32(ScoreUser.Text);
-            ScoreUserInt++;
-            ScoreUser.Text = ScoreUserInt.ToString();
-
-            ScoreEnemyInt = Convert.ToInt32(ScoreEnemy.Text);
-            ScoreEnemyInt++;
-            ScoreEnemy.Text = ScoreEnemyInt.ToString();
-
-            //}
+           
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e) //Done
         {
-            if (!IsMovePlayer)
+            
+            if (!IsMoveEnemy)
             {
+                
 
                 for (; ; )
                 {
                     int x = rnd.Next(0, 3);
                     int y = rnd.Next(0, 3);
                     Button button = buttonsLocation[x, y];
-
+                    
 
                     if (button.Content == null)
                     {
                         button.Content = DrawCircle();
-
+                        IsMoveEnemy = false;
                         IsMovePlayer = true;
+                        
                         break;
                     }
-                    //else if (btn1 != null & btn2 != null & btn3 != null &
-                    //   btn4 != null & btn5 != null & btn6 != null &
-                    //   btn7 != null & btn8 != null & btn9 != null)
-                    //{
-                    //    break;
-                    //}
+                   
                     else if (button.Content != null)
                     {
                         continue;
                     }
-                    
 
+                    
                 }
 
                 WhoWin();
-                if (!restartFlag)
+                if (restartFlag)
                 {
-                    btn1.Content = null;
-                    btn2.Content = null;
-                    btn3.Content = null;
-                    btn4.Content = null;
-                    btn5.Content = null;
-                    btn6.Content = null;
-                    btn7.Content = null;
-                    btn8.Content = null;
-                    btn9.Content = null;
-                    WhoWinText.Text = "";
+                    IsMovePlayer = false;
+                    IsMoveEnemy = false;
 
                 }
 
             }
+            
 
         }
 
@@ -276,7 +267,7 @@ namespace X0X
 
             PathGeometry myPathGeometry = new PathGeometry();
 
-            // Create a figure.
+            // Создание креста
             PathFigure pathFigure1 = new PathFigure();
             pathFigure1.StartPoint = new System.Windows.Point(55, 55);
 
@@ -284,7 +275,7 @@ namespace X0X
             pathFigure1.Segments.Add(
                 new LineSegment(
                     new System.Windows.Point(5, 5),
-                    true /* IsStroked */ ));
+                    true  /*Отображение линии*/  ));
 
 
             myPathGeometry.Figures.Add(pathFigure1);
@@ -296,12 +287,12 @@ namespace X0X
             pathFigure2.Segments.Add(
                 new LineSegment(
                     new System.Windows.Point(55, 5),
-                    true /* IsStroked */ ));
+                    true /*Отображение линии*/ ));
 
 
             myPathGeometry.Figures.Add(pathFigure2);
 
-            // Display the PathGeometry. 
+            // Вывод фигуры 
             Path myPath = new Path();
             myPath.Stroke = System.Windows.Media.Brushes.LightPink;
             myPath.StrokeThickness = 3;
@@ -310,7 +301,26 @@ namespace X0X
 
 
         }
-        
-        
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) //restart
+        {
+            if (restartFlag)
+            {
+                btn1.Content = null;
+                btn2.Content = null;
+                btn3.Content = null;
+                btn4.Content = null;
+                btn5.Content = null;
+                btn6.Content = null;
+                btn7.Content = null;
+                btn8.Content = null;
+                btn9.Content = null;
+                WhoWinText.Text = "";
+                IsMovePlayer = true;
+                IsMoveEnemy = false;
+                restartFlag = false;
+
+            }
+        }
     }
 }
